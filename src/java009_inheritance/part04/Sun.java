@@ -1,0 +1,20 @@
+package java009_inheritance.part04;
+
+public class Sun extends Parent {
+	String dept;
+	
+	public Sun() {
+		super(); 
+	}
+
+	public Sun(String name, int age, String dept) {
+		super(name,age);
+		this.dept = dept;
+	}
+	
+	//상위 패키지가 같고 default로 적용되어있음
+	public String toString() {
+		return String.format("%s %d %s", name, age, dept);
+		
+	}
+} // end class
