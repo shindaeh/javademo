@@ -3,6 +3,7 @@ package java021_jdbc.part02;
 //저장된 값을 호출 
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -55,6 +56,58 @@ public class DepartmentsDAO {
 				JdbcTemplate.close(rs);
 				JdbcTemplate.close(stmt);
 			}
+			
+			
 			return aList;
-		}
+		} // end getListMethod()
+		
+		
+		public List<DepartmentsDTO> getSearchMethod(Connection conn, String search){
+			List<DepartmentsDTO> aList = new ArrayList<DepartmentsDTO>();
+			Statement stmt = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+			
+				/*	stmt = conn.createStatement();
+				//WHERE deaprtment_name LIKE '%"어제(위에)와 차이점
+				String sql = "SELECT * FROM departments WHERE department_name LIKE '%" + search+ "%' ORDER BY department_id";
+				//쿼리문이 시행되려면  .executeQuery 사용해야한다.
+				rs = stmt.executeQuery(sql);
+				*/
+				
+				//위에 식과 쿼리문의 위치가 다르다.
+				// ? ='%" + search+ "%'
+				// 왼쪽에서 인덱스가 1로 붙는다.
+				String sql = "SELECT * FROM departments WHERE department_name LIKE ? ORDER BY department_id";
+				pstmt = conn.prepareStatement(sql);
+				// 쿼리문의 ?의 데이터 타입이 String타입이기 떄문에 setString
+				pstmt.setString(1, "%" + search + "%");
+				rs = pstmt.executeQuery();
+				
+				//"SELECT * FROM departments WHERE deaprtment_name LIKE '%" + search+ "%'";의 결과의 갯수많큼 while문이 작동
+				while(rs.next()) {
+					//각각 행위의 값을 저장하기 위함
+					DepartmentsDTO dto = new DepartmentsDTO();
+					dto.setDepartment_id(rs.getInt("department_id"));
+					dto.setDepatmnent_name(rs.getString("department_name"));
+					dto.setManager_id(rs.getInt("manager_id"));
+					dto.setLocation_id(rs.getInt("location_id"));
+					aList.add(dto);
+					
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JdbcTemplate.close(rs);
+				JdbcTemplate.close(stmt);
+			}
+			
+			return aList;
+		}//end getSearchMethod
+		
+		
+		
+		
 }//end class

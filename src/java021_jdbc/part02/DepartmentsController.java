@@ -13,4 +13,9 @@ public class DepartmentsController {
 	public List<DepartmentsDTO> listProcess(){
 		return service.getDepartmentsList();
 		}// end process
+	
+	public List<DepartmentsDTO> listSearchProcess(String search){
+		return service.getSearchList(search);
+	}
 } // end class
+//.

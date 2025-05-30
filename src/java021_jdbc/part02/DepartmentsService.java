@@ -31,5 +31,28 @@ public class DepartmentsService {
 		}
 		
 		return aList;
-	}
+	}// end getDepartmentsList()
+	
+	public List<DepartmentsDTO> getSearchList(String search){
+		List<DepartmentsDTO> aList = null;
+		Connection conn = JdbcTemplate.getConnection();
+		dao = DepartmentsDAO.getInstance();
+		
+		try {
+			//conn.setAutoCommit(false); jdbc는 자동으로 오토커밋이 되기때문에 TRUE를 -> False로 바꿔서 자동 커밋 해제해준다.
+			conn.setAutoCommit(false); //자동 커밋 해제
+			aList = dao.getSearchMethod(conn, search);
+			JdbcTemplate.commit(conn);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			JdbcTemplate.rollback(conn);
+			
+		} finally {
+			JdbcTemplate.close(conn);
+		}
+				
+		return aList;
+	} // end get
+	
 } //end class
