@@ -1,0 +1,1 @@
+2025-06-02 10:42:51,643 - java024_lombok.part02.DataMain -mem

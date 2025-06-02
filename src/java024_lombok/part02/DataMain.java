@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DataMain {
-/*
+
 	public static void main(String[] args) {
 	
 		MemDTO dto = new MemDTO();
@@ -17,9 +17,8 @@ public class DataMain {
 		//System.out.println(dto.toString());	
 		log.info("mem", dto);
 		
-		 MemDTO mem = new MemDTO(2,"여진구", 40, "서울");
-		 System.out.println(mem.toString());
-		
+//		 MemDTO mem = new MemDTO(2,"여진구", 40, "서울");
+//		 System.out.println(mem.toString());		
 	}
-*/
+
 }

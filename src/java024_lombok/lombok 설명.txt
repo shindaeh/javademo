@@ -8,7 +8,7 @@ https://projectlombok.org/features/Data
 https://projectlombok.org/features/
 
 [2] 롬복 설치
-1. lombok1.18.12을 다운후 eclipse.exe파일이 있는 위치로 이동한다.
+1. lombok1.18.22을 다운후 eclipse.exe파일이 있는 위치로 이동한다.
 2. 명령 프롬프트(cmd)을 관리자 권한으로 실행후 C:\Program Files\Java\jdk-17.0.10.7-hotspot\bin 이동한다.
 3. java -jar D:\ai_chatbot\util\eclipse\lombok-1.18.22.jar  입력후 엔터
 4. Specity location...버튼을 클릭후 D:\ai_chatbot\util\eclipse\eclipse.exe을 선택한다.
